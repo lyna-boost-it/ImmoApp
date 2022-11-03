@@ -21,6 +21,7 @@ class CreateBlocsTable extends Migration
             $table->string('bloc');
             $table->integer('floor_number');
             $table->integer('lot_number');
+            $table->integer('progress_rate');
             $table->date('progress_date');
             $table->timestamps();
         });

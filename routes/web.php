@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\Project\BlocController;
+use App\Http\Controllers\BoxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +34,16 @@ Route::namespace('Project')->prefix('Project')->name('Project.')->group(function
     Route::resource('/edd', 'EddController');
     Route::resource('/bloc', 'BlocController');
     Route::resource('/typology', 'TypologyController');
+    Route::resource('/box', 'BoxController');
 });
 
+Route::get('Project/project/bloc/{id}', [BlocController::class, 'bloc'])->name('bloc');
+Route::get('Project/project/newbloc/{id}', [BlocController::class, 'newbloc'])->name('newbloc');
 
 
+Route::resource('/user', 'UserController');
 
+Route::namespace('Contact')->prefix('Contact')->name('Contact.')->group(function () {
+    Route::resource('/prospect', 'ProspectController');
 
+});

@@ -16,8 +16,8 @@
                 <li><a class="nav-link" href="index-0.html">Gestion des Lots</a></li>
                 <li><a class="nav-link" href="{{ URL('/Project/typology') }}">Gestion des Typologies</a></li>
                 <li><a class="nav-link" href="{{ URL('/Project/edd') }}">Gestion des Edds</a></li>
-                <li><a class="nav-link" href="index-0.html">Gestion des Blocs</a></li>
-                <li><a class="nav-link" href="index-0.html">Gestion des Boxs</a></li>
+                <li><a class="nav-link" href="{{ URL('/Project/bloc') }}">Gestion des Blocs</a></li>
+                <li><a class="nav-link" href="{{ URL('/Project/box') }}">Gestion des Boxs/Dépôts</a></li>
               </ul>
             </li>
               <li class="dropdown">
@@ -58,7 +58,7 @@
               </ul>
             </li>
 
-         <li><a class="nav-link" href="credits.html"><i class="fas fa-users"></i> <span>UTILISATEURS</span></a></li>
+         <li><a class="nav-link" href="{{ URL('/user') }}"><i class="fas fa-users"></i> <span>UTILISATEURS</span></a></li>
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

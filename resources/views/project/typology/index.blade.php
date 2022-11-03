@@ -24,7 +24,8 @@
                 <th>NATURE DE LOT</th>
                 <th>CONSISTANCE</th>
                 <th>DESCRIPTION</th><th>TAUX TVA</th>
-				        <th>ACTION</th>
+				        <th>TVA</th>
+                           <th>ACTION</th>
                           </tr>
                         </thead>
                         <tbody>

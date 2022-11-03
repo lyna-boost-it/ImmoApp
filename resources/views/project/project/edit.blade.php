@@ -7,9 +7,9 @@
           <div class="section-header">
             <h1>Gestion des Projets</h1>
             <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">CRM</a></div>
-              <div class="breadcrumb-item"><a href="#">Gestion des projets</a></div>
-              <div class="breadcrumb-item">Mjouter un projet</div>
+                <div class="breadcrumb-item active"><a href="{{ URL('/home') }}">CRM</a></div>
+                <div class="breadcrumb-item"><a href="{{ URL('/Project/project') }}">Gestion des Projets</a></div>
+              <div class="breadcrumb-item">Modifier un projet</div>
             </div>
           </div>
 
@@ -18,7 +18,7 @@
                   <div class="card">
                   <form  action="{{ route('Project.project.update', $project->id) }}" method="post" class="needs-validation" novalidate="">
                     @csrf
-                    {{method_field('PUT')}}
+                    {{method_field('PUT')}}     {{method_field('PUT')}}
                     <div class="card-body">
                      <div class="form-row">
                       <div class="form-group col-md-6">
@@ -30,7 +30,7 @@
                       </div>
                        <div class="form-group col-md-6">
                         <label>Nom de Projet <span class="ob">*</span></label>
-                        <input type="text" name="name" class="form-control" value="{{$project->name  }}" required="">
+                        <input type="text" name="name" class="form-control" value="{{$project->name}}" required="">
                         <div class="invalid-feedback">
                           ce champ est obligatoire!
                         </div>
@@ -39,10 +39,19 @@
                      <div class="form-row">
                       <div class="form-group col-md-6">
                         <label>Type de Projet <span class="ob">*</span></label>
-                        <select name="type" class="form-control" value="{{$project->type  }}" required="">
-                                        <option value="1">LPA</option>
-                                        <option value="2">LPP</option>
-                                        <option value="3">PROMOTIONNEL LIBRE</option>
+                        <select name="type" class="form-control" required="">
+                        @if($project->type==1) <option value="1" selected>LPA</option>
+                                               <option value="2">LPP</option>
+                                               <option value="3">PROMOTIONNEL LIBRE</option>
+                        @endif
+                        @if($project->type==2) <option value="1">LPA</option>
+                                               <option value="2" selected>LPP</option>
+                                               <option value="3">PROMOTIONNEL LIBRE</option>
+                        @endif
+                        @if($project->type==3) <option value="1">LPA</option>
+                                               <option value="2">LPP</option>
+                                               <option value="3" selected>PROMOTIONNEL LIBRE</option>
+                        @endif
                         </select>
                         <div class="invalid-feedback">
                           ce champ est obligatoire!
@@ -90,8 +99,7 @@
                       </div>
                        <div class="form-group col-md-6">
                         <label>Achèvement Le<span class="ob">*</span></label>
-                        <input type="date" name="end_date" class="form-control"
-                        value="<?php echo e(old('end_date', $project->end_date->format('Y-m-d'))); ?>"   required="">
+                        <input type="date" name="end_date" class="form-control"  value="<?php echo e(old('end_date', $project->end_date->format('Y-m-d'))); ?>"   required="">
                         <div class="invalid-feedback">
                           ce champ est obligatoire!
                         </div>
@@ -143,7 +151,7 @@
                     <div class="card-footer">
                       <small>Les champs suivis d'un (<span class="ob">*</span>) sont obligatoires.</small>
                       <div class="text-right">
-                      <button class="btn btn-primary">Ajouter</button>
+                      <button class="btn btn-primary">Modifier</button>
                       </div>
                     </div>
                   </form>

@@ -22,16 +22,14 @@ class CreateProjectsTable extends Migration
             $table->string('address');
             $table->date('start_date');
             $table->date('end_date');
-            $table->integer('duration');
+            $table->integer('duration')->nullable();
             $table->integer('bloc_number');
             $table->integer('lot_number');
             $table->integer('charges');
             $table->integer('additional_charges');
             $table->integer('vice_preparations');
             $table->integer('guaranty');
-
             $table->date('delivery_date');
-
             $table->timestamps();
         });
     }

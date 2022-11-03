@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Project;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
@@ -41,6 +42,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
         $project=Project:: create($request->only(
             'code',
             'type',
@@ -49,7 +51,6 @@ class ProjectController extends Controller
             'address',
             'start_date',
             'end_date',
-            'duration',
             'bloc_number',
             'lot_number',
             'charges',
@@ -58,7 +59,14 @@ class ProjectController extends Controller
             'guaranty',
             'delivery_date',));
 
-            return redirect()->route ('Project.project.index')->with('success',"vous avez ajouter une Typologie avec succès");
+             $fromDate = Carbon::parse($project->start_date);
+             $toDate = Carbon::parse($project->end_date);
+             $months = $toDate->diffInMonths($fromDate);
+
+             $project->duration=$months;
+             $project->save();
+
+            return redirect()->route ('Project.project.index')->with('success',"vous avez ajouter un Projet avec succès");
 
     }
 
@@ -70,8 +78,10 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::find($id);
+        return view('Project.project.show', ['project' => $project]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -82,7 +92,6 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project=Project::find($id);
-
        return view("Project.project.edit", compact('project') );
     }
 
@@ -97,7 +106,7 @@ class ProjectController extends Controller
     {
         $project=Project::find($id);
         $project->update($request->only(
-               'code',
+            'code',
             'type',
             'name',
             'description',
@@ -112,7 +121,15 @@ class ProjectController extends Controller
             'vice_preparations',
             'guaranty',
             'delivery_date'));
-            return redirect('/Project/project')->with('success',"vous avez modifier une typology avec succès");
+
+             $fromDate = Carbon::parse($project->start_date);
+             $toDate = Carbon::parse($project->end_date);
+             $months = $toDate->diffInMonths($fromDate);
+             
+             $project->duration=$months;
+             $project->save();
+             
+            return redirect('/Project/project')->with('success',"vous avez modifier un projet avec succès");
 
     }
 
